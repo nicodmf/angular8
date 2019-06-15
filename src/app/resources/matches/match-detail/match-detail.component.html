@@ -1,3 +1,20 @@
-<p>
-  match-detail works!
-</p>
+<div *ngIf="match" class="match columns">
+  <div class="column is-5">
+    <img [src]="match.home_team_image" alt="" />
+    <br />
+    {{ match.home_team }}
+  </div>
+  <div class="column is-1">
+    <strong>{{ match.home_team_goals }}</strong>
+  </div>
+  <div class="column is-1">
+    <strong>{{ match.away_team_goals }}</strong>
+  </div>
+  <div class="column is-5">
+    <img [src]="match.away_team_image" alt="" />
+    <br />
+    {{ match.away_team }}
+  </div>
+</div>
+
+<iframe *ngIf="match && match.video_url" width="560" height="315" [src]="match.video_url | safe" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

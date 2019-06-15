@@ -42,6 +42,11 @@ build: build-app
 build-app:
 	docker-compose exec -T node rm -rf dist/$(APPLICATION_NAME)/*
 	docker-compose exec -T node ng build --deleteOutputPath=false
+publish:
+	docker-compose exec -T node rm -rf dist/$(APPLICATION_NAME)/*
+	docker-compose exec -T node ng build --deleteOutputPath=false --prod --base-href=https://nicodmf.github.io/angular8/
+	rm -rf docs && cp -rf dist/$(APPLICATION_NAME) docs
+	git add . && git commit -a -m 'publish' && git push
 analyze:
 	docker-compose exec -T node npm run analyze
 	xdg-open build/analyze.html

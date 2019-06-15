@@ -1,6 +1,7 @@
 {
   "name": "angular8-tutorial",
   "version": "0.0.0",
+  "homepage": "https://nicodmf.github.io/angular8/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -9,7 +9,7 @@ import { BreadcrumbStore } from 'src/app/common/store/breadcrumb.store';
 export class BreadcrumbComponent implements OnInit {
 
   constructor(
-    private store: BreadcrumbStore
+    public store: BreadcrumbStore
   ) { }
 
   ngOnInit() {

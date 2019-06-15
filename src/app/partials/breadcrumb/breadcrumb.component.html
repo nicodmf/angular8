@@ -1,0 +1,17 @@
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li *ngFor="let path of store.paths | async" [class]="path.target ? '' : 'is-active' ">
+
+        <a *ngIf="path.target" [routerLink]="path.target">
+          <i *ngIf="path.icon" [class]="path.icon"></i>
+          &nbsp;
+          {{ path.label }}
+        </a>
+        <a *ngIf="!path.target">
+          <i *ngIf="path.icon" [class]="path.icon"></i>
+          &nbsp;
+          {{ path.label }}
+        </a>
+      </li>
+  </ul>
+</nav>

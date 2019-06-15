@@ -13,6 +13,7 @@ import { SafePipe } from './common/pipe/safe.pipe';
 import { BreadcrumbComponent } from './partials/breadcrumb/breadcrumb.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { ContactComponent } from './resources/contact/contact.component';
+import { MatchResumeComponent } from './component/match/resume/resume.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ContactComponent } from './resources/contact/contact.component';
     BreadcrumbComponent,
     FooterComponent,
     ContactComponent,
+    MatchResumeComponent,
   ],
   imports: [
     BrowserModule,

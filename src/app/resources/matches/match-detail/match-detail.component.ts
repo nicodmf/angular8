@@ -2,6 +2,8 @@ import { Component, OnInit, Pipe } from '@angular/core';
 import { Match } from 'src/app/common/interfaces/match';
 import { MatchService } from 'src/app/common/services/match.service';
 import { ActivatedRoute } from '@angular/router';
+import { BreadcrumbStore } from 'src/app/common/store/breadcrumb.store';
+import { Path } from 'src/app/common/interfaces/path';
 
 @Pipe({ name: 'safe' })
 @Component({
@@ -15,7 +17,8 @@ export class MatchDetailComponent implements OnInit {
 
   constructor(
     private matchService: MatchService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private breadcrumbStore: BreadcrumbStore,
   ) { }
 
   ngOnInit() {
@@ -24,6 +27,16 @@ export class MatchDetailComponent implements OnInit {
       const video = res.video_url.match(/=.*&/)[0];
       res.video_url = "https://www.youtube.com/embed/" + video.slice(1, video.length - 1) + "?autoplay=1&origin=https://www.lfp.fr/"
       this.match = res;
+
     })
+  }
+  ngAfterContentChecked() {
+    if(!this.match) {
+      return;
+    }
+    this.breadcrumbStore.setPaths([
+      {label: 'matches', target: '/', icon: 'fas fa-home'},
+      {label: `match ${this.match.home_team} vs ${this.match.away_team}`, target: null},
+    ]);
   }
 }

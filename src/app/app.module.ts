@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './partials/header/header.component';
+import { RouterModule } from '@angular/router';
+
+import { appRoutes } from './app.routes'
 
 @NgModule({
   declarations: [
@@ -10,7 +13,8 @@ import { HeaderComponent } from './partials/header/header.component';
     HeaderComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]

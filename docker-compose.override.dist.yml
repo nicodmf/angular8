@@ -1,0 +1,32 @@
+version: '3'
+services:
+    apache:
+        volumes:
+            - ./dist/angular8-tutorial:/usr/local/apache2/htdocs
+            - ./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+        #ports:
+        #- 80:80
+        env_file: [ .env ]
+        networks: [traefik]
+        labels:
+            - "traefik.backend=${DOMAIN}"
+            - "traefik.frontend.rule=Host:${DOMAIN}"
+            - "traefik.port=80"
+    node:
+        build: ./docker/node
+        volumes:
+            - ./:/app
+        #ports:
+        #- 8080:8080
+        env_file: [ .env ]
+        networks: [traefik]
+        labels:
+            - "traefik.app.backend=node-${DOMAIN}"
+            - "traefik.app.frontend.rule=Host:node-${DOMAIN}"
+            - "traefik.app.port=4200"
+            - "traefik.test.backend=test-${DOMAIN}"
+            - "traefik.test.frontend.rule=Host:test-${DOMAIN}"
+            - "traefik.test.port=9876"
+networks:
+    traefik:
+        external: true
